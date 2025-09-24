@@ -1,89 +1,78 @@
-Perfect 👍 Since you have three scripts (create_memory_for_llm.py, connect_memory_with_llm.py, medibot.py), FAISS-based embeddings, Groq LLMs, and Streamlit UI — I’ll write a professional README.md for your project.
+Here’s a clean, professional, and user-friendly README.md for your MediBot project, including instructions about cloning, adding their own GROQ API key, running locally with uv, and a brief description:
 
-Here’s a clean version you can drop directly into your repo:
+# MediBot: RAG-based Medical Chatbot
 
-🧠 MediBot – RAG Chatbot with Groq LLMs
+MediBot is a Retrieval-Augmented Generation (RAG) chatbot designed to answer medical questions using information from PDF documents. It leverages **Groq LLM** for natural language understanding and **FAISS** for vector-based retrieval of document chunks.  
 
-MediBot is a Retrieval-Augmented Generation (RAG) chatbot that uses Groq’s LLMs for fast inference and FAISS for vector search.
-It allows you to upload medical PDFs (or any documents), generate embeddings, and then query them in natural language through a Streamlit-powered chatbot.
+---
 
-🚀 Features
+## ⚠️ Important
+Before cloning and running this project, you **must provide your own GROQ API Key**. This is required for the chatbot to connect with the Groq LLM.  
 
-📄 PDF ingestion → Load one or more PDFs into a vector database.
+1. Sign up at [Groq](https://groq.com/) and get your API Key.  
+2. Create a `.env` file in the project root:  
 
-🔍 Semantic search with FAISS → Efficient vector similarity retrieval.
-
-🤖 LLM with Groq API → Powered by LLaMA-3.1 (8B Instant) for contextual answers.
-
-🧩 LangChain pipeline → Uses retrieval-qa-chat chain for grounding answers.
-
-💬 Streamlit UI → Simple, interactive chatbot interface.
-
-🔑 Environment-based config → API keys are stored in .env.
-
-📂 Project Structure
-.
-├── data/                         # Place your PDFs here
-├── vectorstore/                  # Stores FAISS index
-├── create_memory_for_llm.py      # Extracts text, chunks, and builds FAISS DB
-├── connect_memory_with_llm.py    # CLI-based RAG query tool
-├── medibot.py                    # Streamlit chatbot app
-├── requirements.txt              # Project dependencies
-└── README.md                     # Project documentation
-
-⚙️ Setup Instructions
-1. Clone the repo
-git clone https://github.com/yourusername/medibot.git
-cd medibot
-
-2. Create & activate virtual environment
-python -m venv venv
-source venv/bin/activate   # macOS/Linux
-venv\Scripts\activate      # Windows
-
-3. Install dependencies
-pip install -r requirements.txt
-
-4. Setup environment variables
-
-Create a .env file in the project root:
-
+```env
 GROQ_API_KEY=your_groq_api_key_here
 
+📥 Clone the Project
+git clone https://github.com/AbdulRazzaq007/medibot_.git
+cd medibot_
 
-⚠️ Do not share or commit this file. Add it to .gitignore.
+🛠 Setup & Run Locally
 
-5. Prepare your documents
+Create a virtual environment (optional but recommended):
 
-Place your PDFs inside the data/ folder.
+python -m venv venv
+source venv/bin/activate      # Linux / macOS
+venv\Scripts\activate         # Windows
 
-6. Build FAISS index
-python create_memory_for_llm.py
 
-7. Run CLI query tool (optional)
-python connect_memory_with_llm.py
+Install dependencies using UV:
 
-8. Launch Streamlit chatbot
-streamlit run medibot.py
+uv install
+uv export -f requirements.txt -o requirements.txt
+pip install -r requirements.txt
 
-🛠️ Tech Stack
 
-[Python 3.9+]
+Run the chatbot locally:
 
-Streamlit
- – UI
+uv run medibot.py
 
-LangChain
- – RAG orchestration
 
-Groq LLMs
- – LLaMA-3.1 backend
+Open your browser at:
 
-FAISS
- – Vector database
+http://localhost:8501/
 
-HuggingFace Sentence Transformers
- – Embeddings
 
+You will see the MediBot interface where you can type your medical questions.
+
+📂 Project Structure
+
+medibot.py – Main Streamlit app for the chatbot.
+
+connect_memory_with_llm.py – Connects the LLM with FAISS vector store.
+
+create_memory_for_llm.py – Processes PDFs and creates embeddings for FAISS.
+
+data/ – Folder to store PDF documents.
+
+vectorstore/ – FAISS database for embeddings.
+
+.env – Environment variables (GROQ API key).
+
+💡 Usage Notes
+
+Make sure the .env file is never pushed to public repos with real API keys.
+
+Use your own PDFs in the data/ folder for training the chatbot.
+
+For large document sets, the FAISS database may take time to generate.
+
+🔗 Links
+
+GitHub Repo: https://github.com/AbdulRazzaq007/medibot_.git
+
+Local Streamlit App: http://localhost:8501/
 
 
