@@ -1,3 +1,10 @@
 .env
 .env
 .env
+.env
+uv.lock
+.env
+vectorstore/
+uv.lock
+__pycache__/
+*.pyc
